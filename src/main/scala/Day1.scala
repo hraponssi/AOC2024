@@ -15,6 +15,10 @@ class Solving1 {
       res += lsort(i)*rsort.count(_ == lsort(i))
     res
 
+  // Single Line Part 2
+  def process2l(lines: Vector[String]): Int =
+    lines.map(_.split("   ")(0).toInt).map(v => v*lines.map(_.split("   ")(1).toInt).count(_ == v)).sum
+
   // Part 1
   def process1(lines: Vector[String]): Int =
     var res = 0

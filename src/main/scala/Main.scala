@@ -5,6 +5,6 @@ object Main extends App {
   val lines = solver.readLines()
   //println("Input:")
   //println(lines.mkString("\n"))
-  val result = solver.process(lines)
+  val result = solver.process2l(lines)
   println("result: " + result)
 }
