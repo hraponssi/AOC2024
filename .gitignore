@@ -1,0 +1,12 @@
+/*/build/
+/buildassets/map_*.txt
+/*/bin/
+/*/dist/
+/*/manifest.mf
+/release
+
+/.bloop/
+/.metals/
+/.vscode/
+/project/
+/target/
