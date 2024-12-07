@@ -1,7 +1,7 @@
 
 // Main starter
 object Main extends App {
-  val solver = new Solving7()
+  val solver = new Solving8()
   val lines = solver.readLines()
   //println("Input:")
   //println(lines.mkString("\n"))
