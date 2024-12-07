@@ -18,24 +18,18 @@ class Solving7 {
         // Multiply with next number
         val multiplied = base*next
         if (multiplied <= target && !ret) then
-          if (multiplied == target && remaining.size == 1) then
-            ret = true
-          else
-            ret = solver(multiplied, remaining.drop(1))
+          ret = (multiplied == target && remaining.size == 1)
+            || solver(multiplied, remaining.drop(1))
         // Add with next number
         val added = base+next
         if (added <= target && !ret) then
-          if (added == target && remaining.size == 1) then
-            ret = true
-          else
-            ret = solver(added, remaining.drop(1))
+          ret = (added == target && remaining.size == 1) 
+            || solver(added, remaining.drop(1))
         // The || operator to just append the next number
         val appended = base * Math.pow(10, Math.log10(next).toInt+1) + next
         if (appended <= target && !ret) then
-          if (appended == target && remaining.size == 1) then
-            ret = true
-          else
-            ret = solver(appended, remaining.drop(1))
+          ret = (appended == target && remaining.size == 1)
+            || solver(appended, remaining.drop(1))
         ret
         
       if solver(numbers(0), numbers.drop(1)) then
