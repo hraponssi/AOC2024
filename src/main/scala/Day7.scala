@@ -4,13 +4,13 @@ class Solving7 {
 
   // Part 2
   def process(lines: Vector[String]): BigDecimal =
-    var res: BigDecimal = 0
+    var res: Double = 0
     for li <- lines.indices do
       val target = lines(li).split(": ")(0).toDouble
       val numbers = lines(li).split(": ")(1).split(" ").map(_.toDouble)
 
       // Recursively try each operation if it stays below the target
-      def solver(base: BigDecimal, remaining: Array[Double]): Boolean =
+      def solver(base: Double, remaining: Array[Double]): Boolean =
         if remaining.size == 0 then
           return false
         val next = remaining(0)
@@ -30,8 +30,7 @@ class Solving7 {
           else
             ret = solver(added, remaining.drop(1))
         // The || operator to just append the next number
-        val baseStr = base.toString.split("\\.")(0)
-        val appended = BigDecimal(baseStr+next.toString)
+        val appended = base * Math.pow(10, Math.log10(next).toInt+1) + next
         if (appended <= target && !ret) then
           if (appended == target && remaining.size == 1) then
             ret = true
@@ -45,13 +44,13 @@ class Solving7 {
 
   // Part 1
   def process1(lines: Vector[String]): BigDecimal =
-    var res: BigDecimal = 0
+    var res: Double = 0
     for li <- lines.indices do
       val target = lines(li).split(": ")(0).toDouble
       val numbers = lines(li).split(": ")(1).split(" ").map(_.toDouble)
 
       // Recursively try each operation if it stays below the target
-      def solver(base: BigDecimal, remaining: Array[Double]): Boolean =
+      def solver(base: Double, remaining: Array[Double]): Boolean =
         if remaining.size == 0 then
           return false
         val next = remaining(0)
