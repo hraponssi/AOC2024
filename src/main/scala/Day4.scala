@@ -1,6 +1,6 @@
 class Solving4 {
   def readLines() =
-    scala.io.Source.fromFile("input4.txt").getLines().toVector
+    scala.io.Source.fromFile("inputs/input4.txt").getLines().toVector
 
   def process(lines: Vector[String]): Int =
     var res = 0

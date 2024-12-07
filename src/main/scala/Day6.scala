@@ -3,7 +3,7 @@ import collection.mutable.Set
 
 class Solving6 {
   def readLines() =
-    scala.io.Source.fromFile("input6.txt").getLines().toVector
+    scala.io.Source.fromFile("inputs/input6.txt").getLines().toVector
 
   // Part 2
   def process(lines: Vector[String]): Int =

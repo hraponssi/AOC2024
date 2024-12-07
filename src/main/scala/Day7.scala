@@ -1,6 +1,6 @@
 class Solving7 {
   def readLines() =
-    scala.io.Source.fromFile("input7.txt").getLines().toVector
+    scala.io.Source.fromFile("inputs/input7.txt").getLines().toVector
 
   // Part 2
   def process(lines: Vector[String]): BigDecimal =
