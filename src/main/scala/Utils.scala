@@ -1,7 +1,7 @@
 import collection.mutable.ArrayBuffer
 
 // General helper class for grid based problems
-class Grid[A](val height: Int, val width: Int, defaultValue: A) {
+class Grid[A](val height: Int, val width: Int, defaultValue: A) extends Iterable[(Int, Int)] {
   private var mapping: ArrayBuffer[ArrayBuffer[A]] = ArrayBuffer.fill(height)(ArrayBuffer.fill(width)(defaultValue))
 
   // Utilities
@@ -9,21 +9,21 @@ class Grid[A](val height: Int, val width: Int, defaultValue: A) {
     exists(pair._1, pair._2)
 
   def exists(y: Int, x: Int): Boolean =
-    mapping.length >= y+1 && mapping(y).length >= x+1 && y >= 0 && x >= 0
+    y >= 0 && x >= 0 && mapping.length >= y+1 && mapping(y).length >= x+1
 
-  def neighbors(pair: (Int, Int)): Array[(Int, Int)] =
-    neighbors(pair._1, pair._2)
+  def getNeighbors(pair: (Int, Int)): Array[(Int, Int)] =
+    getNeighbors(pair._1, pair._2)
 
-  def neighbors(y: Int, x: Int): Array[(Int, Int)] =
+  def getNeighbors(y: Int, x: Int): Array[(Int, Int)] =
     var builder = Set[(Int, Int)]()
     var offsets = Seq[(Int, Int)]((1, 0), (-1, 0), (0, 1), (0, -1))
     offsets.foreach(offset => if exists(y+offset._1, x+offset._2) then builder += (y+offset._1, x+offset._2))
     builder.toArray
 
-  def neighborsDiagonal(pair: (Int, Int)): Array[(Int, Int)] =
-    neighborsDiagonal(pair._1, pair._2)
+  def getNeighborsDiagonal(pair: (Int, Int)): Array[(Int, Int)] =
+    getNeighborsDiagonal(pair._1, pair._2)
 
-  def neighborsDiagonal(y: Int, x: Int): Array[(Int, Int)] =
+  def getNeighborsDiagonal(y: Int, x: Int): Array[(Int, Int)] =
     var builder = Set[(Int, Int)]()
     var offsets = Seq[(Int, Int)]((1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (-1, -1), (-1, 1), (1, -1))
     offsets.foreach(offset => if exists(y+offset._1, x+offset._2) then builder += (y+offset._1, x+offset._2))
@@ -66,5 +66,13 @@ class Grid[A](val height: Int, val width: Int, defaultValue: A) {
       Some(mapping(y)(x))
     else
       None
+
+  // Iterator to go over each coordinate pair in the grid
+  def iterator: Iterator[(Int, Int)] =
+    var builder = ArrayBuffer[(Int, Int)]()
+    for (y <- 0 until height) do 
+      for (x <- 0 until width) do 
+        builder += ((y, x))
+    builder.toIterator
 
 }

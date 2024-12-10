@@ -12,7 +12,7 @@ class Solving10 {
   // Part 1 & 2
   def process(lines: Vector[String]): Int =
     var res = 0
-    var map: ArrayBuffer[ArrayBuffer[Int]] = ArrayBuffer.fill(lines.size)(ArrayBuffer.fill(lines(0).length())(0))
+    var map: Grid[Int] = Grid(lines.size, lines(0).size, 0)
     var startingPoints = ArrayBuffer[(Int, Int)]()
     // Load map and start points
     for li <- lines.indices do
@@ -23,23 +23,12 @@ class Solving10 {
         map(li)(ci) = num
         if num == 0 then
           startingPoints += ((li, ci))
-    // Helper to get tile neighbors
-    def getNeighbors(point: (Int, Int)) =
-      val (py, px) = point
-      // A funny one liner that can be inefficient if the map gets very big
-      // Gather each Y point
-      map.indices.filter(i => i == py+1 || i == py || i == py-1)
-        .map(in => map(in)
-          // Gather each X point
-          .indices.filter(i => i == px+1-Math.abs(py-in) || i == px-1+Math.abs(py-in))
-            // Combine the Y and X points, skip the midpoint
-            .map((in, _))).flatten.filter(_ != point)
     // For part 1 this list prevents double counting
     var reached = Map[(Int, Int), Set[(Int, Int)]]().withDefaultValue(Set())
     // Returns the amount of 9 points reached from a point
     def pathFind(path: Array[(Int, Int)], cweight: Int): Int =
       val point = path.last
-      val neighbors = getNeighbors(point)
+      val neighbors = map.getNeighbors(point)
       if cweight == 9 then
         // For part 1 uncomment this line:
         // reached(path.head) += point
