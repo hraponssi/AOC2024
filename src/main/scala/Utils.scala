@@ -58,7 +58,7 @@ class Grid[A](val height: Int, val width: Int, defaultValue: A) extends Iterable
   def apply(pair: (Int, Int)): A =
     mapping(pair._1)(pair._2)
 
-  def getOption(pair: (Int, Int)): A =
+  def getOption(pair: (Int, Int)): Option[A] =
     getOption(pair._1, pair._2)
   
   def getOption(y: Int, x: Int): Option[A] =
