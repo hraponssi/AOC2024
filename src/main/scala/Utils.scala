@@ -29,6 +29,15 @@ class Grid[A](val height: Int, val width: Int, defaultValue: A) extends Iterable
     offsets.foreach(offset => if exists(y+offset._1, x+offset._2) then builder += (y+offset._1, x+offset._2))
     builder.toArray
 
+  def getNeighborsWithInvalids(pair: (Int, Int)): Array[(Int, Int)] =
+    getNeighborsWithInvalids(pair._1, pair._2)
+
+  def getNeighborsWithInvalids(y: Int, x: Int): Array[(Int, Int)] =
+    var builder = Set[(Int, Int)]()
+    var offsets = Seq[(Int, Int)]((1, 0), (-1, 0), (0, 1), (0, -1))
+    offsets.foreach(offset => builder += (y+offset._1, x+offset._2))
+    builder.toArray
+
   // Setters
   def fill(value: A) =
     mapping = ArrayBuffer.fill(height)(ArrayBuffer.fill(width)(value))
