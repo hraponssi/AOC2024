@@ -1,11 +1,11 @@
 
 // Main starter
 object Main extends App {
-  val solver = new Solving12()
+  val solver = new Solving13()
   val lines = solver.readLines()
   //println("Input:")
   //println(lines.mkString("\n"))
-  val result = solver.process1(lines)
+  val result = solver.process(lines)
   println("result: " + result)
 }
 
