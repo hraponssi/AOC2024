@@ -76,6 +76,13 @@ class Grid[A](val height: Int, val width: Int, defaultValue: A) extends Iterable
     else
       None
 
+  override def toString(): String = 
+    var builder = ""
+    for line <- mapping do
+      builder += line.mkString
+      builder += "\n"
+    builder
+
   // Iterator to go over each coordinate pair in the grid
   def iterator: Iterator[(Int, Int)] =
     var builder = ArrayBuffer[(Int, Int)]()

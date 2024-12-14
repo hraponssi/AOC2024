@@ -17,7 +17,7 @@ class Machine(val buttonA: (Int, Int), val buttonB: (Int, Int), val goal: (Int, 
 
 class Solving13 {
   def readLines() =
-    scala.io.Source.fromFile("inputs/input.txt").getLines().toVector
+    scala.io.Source.fromFile("inputs/input13.txt").getLines().toVector
 
   // Part 1 & 2
   def process(lines: Vector[String]): BigDecimal =
