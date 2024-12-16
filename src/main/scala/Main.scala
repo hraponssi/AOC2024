@@ -2,7 +2,7 @@
 // Main starter
 object Main extends App {
   def run() =
-    val solver = new Solving14()
+    val solver = new Solving15()
     val lines = solver.readLines()
     val result = solver.process(lines)
     println("result: " + result)

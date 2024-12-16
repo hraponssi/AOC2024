@@ -76,6 +76,18 @@ class Grid[A](val height: Int, val width: Int, defaultValue: A) extends Iterable
     else
       None
 
+  def getInDirection(start: (Int, Int), move: (Int, Int)): ArrayBuffer[(Int, Int)] =
+    getInDirection(start._1, start._2, move)
+
+  // Not including start position
+  def getInDirection(startY: Int, startX: Int, move: (Int, Int)): ArrayBuffer[(Int, Int)] =
+    var pos = (startY, startX)
+    val res = ArrayBuffer[(Int, Int)]()
+    while (exists(pos._1+move._1, pos._2+move._2)) do 
+      pos = (pos._1+move._1, pos._2+move._2)
+      res += pos
+    res
+
   override def toString(): String = 
     var builder = ""
     for line <- mapping do
